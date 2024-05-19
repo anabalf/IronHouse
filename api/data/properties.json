@@ -1,0 +1,97 @@
+[
+    {
+      "title": "Apartamento con Vista al Parque Retiro",
+      "description": "Un hermoso apartamento con vista al Parque Retiro, perfecto para disfrutar de la naturaleza en la ciudad.",
+      "coverUrl": "https://res.cloudinary.com/dvmkwwn3k/image/upload/v1716142018/iron-house/rlyrkd03pihmvvk4fjkf.jpg",
+      "price": 450000,
+      "m2": 120,
+      "numberOfRooms": 3,
+      "orientation": "south",
+      "restored": true,
+      "visited": false,
+      "source": "Idealista",
+      "address": "Calle de Alcalá, 100, 28009 Madrid",
+      "location": {
+        "type": "Point",
+        "coordinates": [-3.6827, 40.4218]
+      },
+      "tags": ["parque", "moderno", "luminoso"],
+      "owner": "663d12c5edc6670f04245ec4"
+    },
+    {
+      "title": "Piso Moderno en Chamberí",
+      "description": "Piso recién renovado en el corazón de Chamberí, cerca de todas las comodidades.",
+      "coverUrl": "https://res.cloudinary.com/dvmkwwn3k/image/upload/v1716142019/iron-house/guzg3andq4dzfwfjjdwi.jpg",
+      "price": 380000,
+      "m2": 90,
+      "numberOfRooms": 2,
+      "orientation": "north",
+      "restored": true,
+      "visited": true,
+      "source": "Anuncio Online",
+      "address": "Calle de Fuencarral, 150, 28010 Madrid",
+      "location": {
+        "type": "Point",
+        "coordinates": [-3.7038, 40.4291]
+      },
+      "tags": ["central", "moderno", "tranquilo"],
+      "owner": "663d12c5edc6670f04245ec4"
+    },
+    {
+      "title": "Ático en el Barrio de Salamanca",
+      "description": "Lujoso ático con terraza en el prestigioso Barrio de Salamanca.",
+      "coverUrl": "https://res.cloudinary.com/dvmkwwn3k/image/upload/v1716142018/iron-house/zzfhczeevgxbnhk81qb0.jpg",
+      "price": 750000,
+      "m2": 150,
+      "numberOfRooms": 4,
+      "orientation": "east",
+      "restored": true,
+      "visited": false,
+      "source": "Propietario Directo",
+      "address": "Calle de Serrano, 200, 28002 Madrid",
+      "location": {
+        "type": "Point",
+        "coordinates": [-3.6844, 40.4352]
+      },
+      "tags": ["lujo", "terraza", "espacioso"],
+      "owner": "663d12c5edc6670f04245ec4"
+    },
+    {
+      "title": "Estudio en Malasaña",
+      "description": "Estudio acogedor en el vibrante barrio de Malasaña, ideal para jóvenes profesionales.",
+      "coverUrl": "https://res.cloudinary.com/dvmkwwn3k/image/upload/v1716142018/iron-house/hc0doqvupm9qhehtgelm.jpg",
+      "price": 250000,
+      "m2": 50,
+      "numberOfRooms": 1,
+      "orientation": "west",
+      "restored": false,
+      "visited": true,
+      "source": "Agente Inmobiliario",
+      "address": "Calle de San Vicente Ferrer, 40, 28004 Madrid",
+      "location": {
+        "type": "Point",
+        "coordinates": [-3.7047, 40.4276]
+      },
+      "tags": ["acogedor", "vibrante", "céntrico"],
+      "owner": "663d12c5edc6670f04245ec4"
+    },
+    {
+      "title": "Casa Adosada en Hortaleza",
+      "description": "Espaciosa casa adosada en una zona tranquila de Hortaleza, perfecta para familias.",
+      "coverUrl": "https://res.cloudinary.com/dvmkwwn3k/image/upload/v1716142018/iron-house/sjfby0ij3ww5nbnmnsbv.jpg",
+      "price": 600000,
+      "m2": 200,
+      "numberOfRooms": 5,
+      "orientation": "northeast",
+      "restored": false,
+      "visited": false,
+      "source": "Idealista",
+      "address": "Calle de Arturo Soria, 300, 28033 Madrid",
+      "location": {
+        "type": "Point",
+        "coordinates": [-3.6455, 40.4710]
+      },
+      "tags": ["espacioso", "familiar", "tranquilo"],
+      "owner": "663d12c5edc6670f04245ec4"
+    }
+]  

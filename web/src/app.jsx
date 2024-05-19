@@ -8,6 +8,7 @@ import NewProperty from "./pages/new-property"
 import Footer from "./components/ui/footer/footer"
 import Property from "./pages/property"
 
+
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
       
       <main className="flex-shrink-0">
       <Navbar />
+
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/register" element={<Register />}/>
@@ -23,6 +25,7 @@ function App() {
           <Route path="/properties" element={<Properties />} />
           <Route path="/properties/:id" element={<Property />} />
         </Routes>
+
       </main>
 
       <Footer />

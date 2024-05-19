@@ -1,71 +1,45 @@
 const mongoose = require("mongoose");
 const Property = require("../models/property.model");
-const ogs = require("open-graph-scraper");
+//const axios = require('axios');
 
 
-// module.exports.create = (req, res, next) => {
-//     const { url, ...propertyData } = req.body;
-
-//     const scrapePropertyInfo =  (url) => {
-//         return new Promise((resolve, reject) => {
-//             ogs({ url }, (error, result) => {
-//                 if (error) {
-//                     console.error('Error scraping property info:', error);
-//                     reject('Error scraping property info');
-//                 } else {
-//                     const { ogTitle, ogDescription, ogImage, ogPrice, ogM2, ogNumberOfRooms, ogOrientation } = result.og;
-//                     resolve({
-//                         title: ogTitle,
-//                         description: ogDescription,
-//                         coverUrl: ogImage.url,
-//                         price: parseFloat(ogPrice),
-//                         m2: parseFloat(ogM2),
-//                         numberOfRooms: parseInt(ogNumberOfRooms),
-//                         orientation: ogOrientation,
-//                         source: url,
-//                         // Agregar más campos según sea necesario
-//                     });
-//                 }
-//             });
-//         });
-//     }
-
-
-//     if (url) {
-//         scrapePropertyInfo(url)
-//         .then((propertyInfo) => {
-//             const mergedPropertyData = { ...propertyInfo, ...propertyData };
-//             return Property.create(mergedPropertyData);
-//         })
-//         .then((property) => res.status(201).json(property))
-//         .catch((err) => {
-//             if(err instanceof mongoose.Error.ValidationError) {
-//                 res.status(400).json(err.errors);
-//             } else {
-//                 next(err);
-//             }
-//         });
-//     } else {
-//         Property.create(propertyData)
-//         .then((property) => res.status(201).json(property))
-//         .catch((err) => {
-//             if(err instanceof mongoose.Error.ValidationError) {
-//                 res.status(400).json(err.errors);
-//             } else {
-//                 next(err);
-//             }
-//         });
-//     }
-// };
+// async function getCoordinates(address) {
+//     const apiKey = process.env.VITE_GOOGLE_API_KEY;
+//     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+//     return axios.get(url)
+//     .then(response => {
+//         if (response.data.status === 'OK') {
+//             const location = response.data.results[0].geometry.location;
+//             return {
+//                 type: 'Point',
+//                 coordinates: [location.lng, location.lat]
+//             };
+//         } else {
+//             console.error('Error from Geocoding API:', response.data.error_message);
+//             throw new Error('Unable to geocode address');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error in Geocoding API request:', error.message);
+//         throw new Error('Unable to geocode address');
+//     });
+// }
 
 module.exports.create = (req, res, next) => {
-    console.log(req.body);
-    Property.create(req.body) // no seguro - habria que poner los campos concretos (nam: req.body.name etc.)
+    console.log(req.body)
+    console.log(req.file)
+
+    if (req.file) {
+        req.body.coverUrl = req.file.path;
+    }
+
+    const propertyData = { ...req.body, owner: req.user._id };
+    Property.create(propertyData)
       .then((property) => res.status(201).json(property))
       .catch((err) => {
         if (err instanceof mongoose.Error.ValidationError) {
           res.status(400).json(err.errors);
-          console.log(err)
+          console.log(err);
         } else {
           next(err);
         }
@@ -74,7 +48,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
     const { visited, limit, page = 0 } = req.query;
-    const criterial = {};
+    const criterial = { owner: req.user._id };
     if (visited) {
         criterial.visited = visited;
     }
@@ -90,7 +64,11 @@ module.exports.detail = (req, res, next) => {
     Property.findById(req.params.id)
         .then((property) => {
             if (property) {
-                res.json(property);
+                if (property.owner.equals(req.user._id)) { 
+                    res.json(property);
+                } else {
+                    res.status(403).json({ message: "Forbidden" }); 
+                }
             } else {
                 res.status(404).json({ message: "Property not found" })
             }
@@ -99,6 +77,11 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
+    
+    if (req.file) {
+        req.body.coverUrl = req.file.path;
+    }
+
     Property.findByIdAndUpdate(req.params.id, req.body, {
         runValidators: true,
         new: true,

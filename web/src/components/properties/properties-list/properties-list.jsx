@@ -25,9 +25,9 @@ function PropertiesList({ visited, limit, page, onUpdateProperties }) {
 
   return (
     <>
-    <div className="row row-columns-3">
+    <div className="row row-cols-1 row-cols-md-3">
         {properties.map((property) => (
-        <div key={property.id} className="col"><PropertyItem property = {property}/></div>
+        <div key={property.id} className="col mb-4"><PropertyItem property = {property}/></div>
         ))}
    </div>
    </>

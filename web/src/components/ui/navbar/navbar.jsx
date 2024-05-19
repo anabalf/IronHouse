@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthContext from "../../../contexts/auth.context";
 
 const renderNavLinkActive = ({ isActive }) => isActive ? 'nav-link active' : 'nav-link';
@@ -11,14 +11,16 @@ function Navbar() {
     
     <nav className="main-navbar navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
-            <Link className="navbar-brand" to="/">
+            <NavLink className="navbar-brand" to="/">
                 <img src="/icon.svg" width="30" height="30" className="d-inline-block align-top mx-3" alt="Icon" />
                 Iron House | {context.user?.name}
-            </Link>
+            </NavLink>
 
 
             <div className="collapse navbar-collapse">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                {context.user && (
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
                         <NavLink className={renderNavLinkActive} to="/properties">Properties</NavLink>
                     </li>
@@ -26,6 +28,8 @@ function Navbar() {
                         <NavLink className={renderNavLinkActive} to="/new-property">New Property</NavLink>
                     </li>
                 </ul>
+                )}
+                
 
                 <ul className="navbar-nav mb-2 mb-lg-0">
                 {!context.user && (

@@ -1,8 +1,13 @@
 
-function PageLayout({ children }) {
+function PageLayout({ children, backgroundImage }) {
+  
+  const layoutStyle = backgroundImage
+    ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+    : {};
+
   return (
-    <div>
-        <div className="container my-4">{ children }</div>
+    <div style={layoutStyle}>
+        <div className="container">{ children }</div>
     </div>
   )
 }

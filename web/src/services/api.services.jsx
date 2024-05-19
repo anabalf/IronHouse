@@ -53,7 +53,7 @@ export function getProperty(id) {
     return http.get(`/properties/${id}`)
 }
 
-export function createProperty(data) { 
-    return http.post("/new-property", data)
+export function createProperty(property) { 
+    return http.post("/new-property", property)
 }
 

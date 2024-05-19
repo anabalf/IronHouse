@@ -26,6 +26,20 @@ const propertySchema = new Schema(
         message: "Invalid cover image url",
       },
     },
+    webUrl: {
+      type: String,
+      validate: {
+        validator: function (url) {
+          try {
+            new URL(url);
+            return true;
+          } catch (error) {
+            return false;
+          }
+        },
+        message: "Invalid web url",
+      },
+    },
     price: {
       type: Number,
       required: "Price is required",
@@ -62,9 +76,11 @@ const propertySchema = new Schema(
       type: {
         type: String,
         enum: ["Point"],
+        required: true,
       },
       coordinates: {
         type: [Number],
+        required: true,
       },
     },
     tags: [String],
@@ -79,7 +95,7 @@ const propertySchema = new Schema(
     toJSON: {
       transform: (doc, ret) => {
         ret.id = ret._id;
-        //ret.location = ret.location.coordinates.reverse();
+        ret.location = ret.location.coordinates.reverse();
         delete ret._id;
         delete ret.__v;
         return ret;
