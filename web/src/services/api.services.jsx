@@ -56,4 +56,3 @@ export function getProperty(id) {
 export function createProperty(property) { 
     return http.post("/new-property", property)
 }
-

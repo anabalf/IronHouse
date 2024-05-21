@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProperty } from '../services/api.services';
 import { useNavigate } from 'react-router-dom';
-import OGDataLoader from '../components/ogDataLoader/ogDataLoader';
+//import OGDataLoader from '../components/ogDataLoader/ogDataLoader';
 import PageLayout from "../components/ui/page-layout/page-layout";
 import Map from "../components/google/map/map";
 
@@ -47,9 +47,7 @@ function Property() {
                 <p><strong>Visited:</strong> {property.visited ? "Yes" : "No"}</p>
                 <p><strong>Tags:</strong> {property.tags.join(", ")}</p>
                 <p><strong>Source:</strong> {property.source}</p>
-                <p><strong>Link: </strong> 
-                  <OGDataLoader url={property.webUrl}/>
-                </p>
+                <p><strong>Link: </strong>{property.webUrl}</p>
 
             </div>
             <div className="col-md-4">
